@@ -1,6 +1,10 @@
-POST http://localhost:3000/
+POST http://localhost:3000/products
 Content-Type: application/json
 
 {
-    "nombre": "mirko"
+    "nombre": "Remera Nike Basics Oversize",
+    "categorias": ["ropa", "remeras", "deportes", "fitness"],
+    "marca": "Nike",
+    "precio": 7850,
+    "tipo": "remera"
 }

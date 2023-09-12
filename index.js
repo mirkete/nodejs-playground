@@ -1,12 +1,21 @@
-const http = require("node:http")
+const express = require("express")
 const {obtenerPuerto} = require("./services")
 const routes = require("./routes")
+const app = express()
 
-const server = http.createServer(routes)
+const PORT = process.env.PORT || 3000
 
-obtenerPuerto(3000)
+app.use(express.json())
+app.use((req, res, next) => {
+    res.locals.test = "TEST OK"
+    next()
+})
+
+app.use("/", routes)
+
+obtenerPuerto(PORT)
 .then((puerto) => {
-    server.listen(puerto, () => {
+    app.listen(puerto, () => {
         console.log("Servidor encendido en el puerto "+puerto)
     })
 })
