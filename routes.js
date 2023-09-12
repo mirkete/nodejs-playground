@@ -1,49 +1,32 @@
-const fs = require("node:fs/promises")
-const express = require("express")
+const express = require('express')
 const router = express.Router()
-const products = require("./products.json")
-const crypto = require("node:crypto")
+const products = require('./products.json')
+const crypto = require('node:crypto')
+const validateProduct = require('./schemas/Product')
 
-router.get("/", (req, res) => {
-    res.status(200).send("<h1>OK</h1>")
+router.get('/', (req, res) => {
+  res.status(200).send('<h1>OK</h1>')
 })
 
-router.get("/image", (req, res, next) => {
-    fs.readFile("./imagen.jpg")
-    .then((data) => {
-        res.writeHead(200, {
-            "Content-Type": "image/jpeg",
-            "Content-Length": data.length
-        })
-        res.status(200).end(data)
-    })
-    .catch(next)
+router.get('/products', (req, res) => {
+  res.json(products)
 })
 
-router.get("/excel", (req, res) => {
-    res.download("./archivo.csv")
-})
-
-router.get("/products", (req, res) => {
-    res.json(products)
-})
-
-router.post("/products", (req, res) => {
-    const {nombre, categorias, marca, precio, tipo} = req.body
-    const newProduct = {
-        _id: crypto.randomUUID(),
-        nombre,
-        categorias,
-        marca,
-        precio,
-        tipo
-    }
-    products.push(newProduct)
-    res.status(201).send("PRODUCT ADDED")
+router.post('/products', (req, res) => {
+  const validation = validateProduct({
+    _id: crypto.randomUUID(),
+    ...req.body
+  })
+  if (!validation.success) {
+    return res.status(400).json({ err: validation.error })
+  }
+  const newProduct = validation.data
+  products.push(newProduct)
+  res.status(201).json(newProduct)
 })
 
 router.use((req, res) => {
-    res.status(404).send("<h1>404 Not found</h1>")
+  res.status(404).send('<h1>404 Not found</h1>')
 })
 
 module.exports = router
