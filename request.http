@@ -15,7 +15,7 @@ DELETE http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "12e424-e325-436f-8508-48ee6241a582"
+    "_id": "6bdcf930-10e6-4816-ae25-db1e6247d231"
 }
 
 ###
@@ -24,8 +24,6 @@ PATCH http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "23",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike"
+    "nombre": "Remera Nike Ultra-Wide Fit",
+    "precio": 1200
 }

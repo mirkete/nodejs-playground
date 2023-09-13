@@ -32,14 +32,12 @@ router.delete('/products', (req, res) => {
     return res.status(400).json({ err: validation.error })
   }
 
-  products.forEach((prod, i) => {
-    if (prod._id === validation.data._id) {
-      products.splice(i, 1)
-      return res.status(201).send('<h1>PRODUCT REMOVED</h1>')
-    }
-  })
-
-  res.status(400).send('<h1>PRODUCT NOT FOUND</h1>')
+  const index = products.findIndex((prod) => prod._id === validation.data._id)
+  if (index === -1) {
+    return res.status(400).send('<h1>PRODUCT NOT FOUND</h1>')
+  }
+  products.splice(index, 1)
+  res.status(201).send('<h1>PRODUCT REMOVED</h1>')
 })
 
 router.patch('/products', (req, res) => {
@@ -47,7 +45,14 @@ router.patch('/products', (req, res) => {
   if (error) {
     res.status(400).send(error.issues)
   }
-  // Aca modificar el archivo usando el id
+  const index = products.findIndex((prod) => prod._id === data._id)
+  if (index === -1) {
+    return res.status(400).send('<h1>PRODUCT NOT FOUND</h1>')
+  }
+  products[index] = {
+    ...products[index],
+    ...data
+  }
   res.status(200).send(data)
 })
 

@@ -4,6 +4,13 @@ const routes = require('./routes')
 const app = express()
 
 const PORT = process.env.PORT || 3000
+const ALLOWED_ORIGINS = [
+  "http://localhost:1234/"
+]
+
+app.use((req, res, next) => {
+
+})
 
 app.disable('x-powered-by')
 
@@ -11,7 +18,6 @@ app.use(express.json())
 
 app.use((req, res, next) => {
   res.locals.test = 'TEST OK'
-  console.log('asd')
   next()
 })
 
