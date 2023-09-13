@@ -27,3 +27,18 @@ content-type: application/json
     "nombre": "Remera Nike Ultra-Wide Fit",
     "precio": 1200
 }
+
+# fetch("http://localhost:3000/products", {
+#     method: "POST",
+#     headers: {
+#         "Content-Type": "application/json"
+#     },
+#     body: JSON.stringify({
+#         "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
+#         "nombre": "Remera Nik Ultra-Fit Wide",
+#         "categorias": ["ropa", "remeras", "deportes", "fitness"],
+#         "marca": "Nike",
+#         "precio": 7850,
+#         "tipo": "remera"
+#     })
+# })

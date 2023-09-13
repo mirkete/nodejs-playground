@@ -12,6 +12,15 @@ router.get('/products', (req, res) => {
   res.json(products)
 })
 
+router.get('/products/:id', (req, res) => {
+  const { id } = req.params
+  const producto = products.find((prod) => prod._id === id)
+  if (!producto) {
+    res.status(400).send('<h1>PRODUCT NOT FOUND</h1>')
+  }
+  res.status(200).json(producto)
+})
+
 router.post('/products', (req, res) => {
   const validation = validateProduct({
     _id: crypto.randomUUID(),

@@ -3,13 +3,30 @@ const { obtenerPuerto } = require('./services')
 const routes = require('./routes')
 const app = express()
 
-const PORT = process.env.PORT || 3000
 const ALLOWED_ORIGINS = [
-  "http://localhost:1234/"
+  'http://localhost:1234',
+  'https://expressjs.com'
 ]
+const PORT = process.env.PORT || 3000
 
 app.use((req, res, next) => {
+  const origin = req.header('origin')
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    res.writeHead(200, {
+      'Access-Control-Allow-Origin': origin
+    })
+  }
+})
 
+app.options('/products/:id', (req, res) => {
+  const origin = req.header('origin')
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    res.writeHead(200, {
+      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allowed-Methods': 'POST, PATCH, DELETE'
+    })
+  }
+  res.send()
 })
 
 app.disable('x-powered-by')
