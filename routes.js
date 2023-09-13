@@ -1,8 +1,10 @@
-const express = require('express')
-const router = express.Router()
-const products = require('./products.json')
-const crypto = require('node:crypto')
-const { validateProduct, validateProductUUID, validateProductModify } = require('./schemas/Product')
+import { Router } from 'express'
+import crypto from 'node:crypto'
+import { validateProduct, validateProductUUID, validateProductModify } from './schemas/Product.js'
+import { readJson } from './utils.js'
+
+const products = readJson('./products.json')
+const router = Router()
 
 router.get('/', (req, res) => {
   res.status(200).send('<h1>OK</h1>')
@@ -69,4 +71,4 @@ router.use((req, res) => {
   res.status(404).send('<h1>404 Not found</h1>')
 })
 
-module.exports = router
+export default router

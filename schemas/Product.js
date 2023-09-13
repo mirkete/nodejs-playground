@@ -1,4 +1,4 @@
-const { z } = require('zod')
+import { z } from 'zod'
 
 const UUID = z.object({
   _id: z.string().uuid()
@@ -36,4 +36,4 @@ function validateProductModify (product) {
   }).safeParse(product)
 }
 
-module.exports = { validateProduct, validateProductUUID, validateProductModify }
+export { validateProduct, validateProductUUID, validateProductModify }

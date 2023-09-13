@@ -1,4 +1,5 @@
-const http = require('node:http')
+import http from 'node:http'
+import { createRequire } from 'node:module'
 
 function obtenerPuerto (puertoDeseado) {
   const server = http.createServer()
@@ -18,4 +19,10 @@ function obtenerPuerto (puertoDeseado) {
   })
 }
 
-module.exports = { obtenerPuerto }
+const require = createRequire(import.meta.url)
+
+function readJson (path) {
+  return require(path)
+}
+
+export { obtenerPuerto, readJson }

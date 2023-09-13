@@ -24,8 +24,8 @@ PATCH http://localhost:3000/products
 content-type: application/json
 
 {
-    "nombre": "Remera Nike Ultra-Wide Fit",
-    "precio": 1200
+    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
+    "nombre": "New name"
 }
 
 # fetch("http://localhost:3000/products", {
