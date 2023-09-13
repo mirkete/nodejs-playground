@@ -1,5 +1,9 @@
 const { z } = require('zod')
 
+const UUID = z.object({
+  _id: z.string().uuid()
+})
+
 const Product = z.object({
   _id: z.string().uuid(),
   nombre: z.string({
@@ -22,4 +26,14 @@ function validateProduct (product) {
   return Product.safeParse(product)
 }
 
-module.exports = validateProduct
+function validateProductUUID (id) {
+  return UUID.safeParse(id)
+}
+
+function validateProductModify (product) {
+  return Product.partial().required({
+    _id: true
+  }).safeParse(product)
+}
+
+module.exports = { validateProduct, validateProductUUID, validateProductModify }
