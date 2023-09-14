@@ -15,7 +15,7 @@ DELETE http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "6bdcf930-10e6-4816-ae25-db1e6247d231"
+    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e"
 }
 
 ###
