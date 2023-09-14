@@ -16,6 +16,7 @@ app.use((req, res, next) => {
       'Access-Control-Allow-Origin': origin
     })
   }
+  next()
 })
 
 app.options('/products/:id', (req, res) => {
