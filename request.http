@@ -15,7 +15,7 @@ DELETE http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e"
+    "_id": "47db6d50-60de-4033-a931-e0353d08f56b"
 }
 
 ###
@@ -25,7 +25,7 @@ content-type: application/json
 
 {
     "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "New name"
+    "nombre": "Remeruki"
 }
 
 # fetch("http://localhost:3000/products", {

@@ -7,35 +7,18 @@
 import express from 'express'
 import { obtenerPuerto } from './utils.js'
 import routes from './routes.js'
-import cors from 'cors'
+import corsMiddleware from './middlewares/cors.js'
+import testMiddleware from './middlewares/test.js'
 
 const app = express()
 
-const ALLOWED_ORIGINS = [
-  'http://localhost:3000',
-  'http://localhost:1234',
-  'https://expressjs.com'
-]
 const PORT = process.env.PORT || 3000
 
 app.disable('x-powered-by')
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (ALLOWED_ORIGINS.includes(origin)) {
-      return callback(null, true)
-    }
-    if (!origin) {
-      return callback(null, true)
-    }
-    return callback(new Error('CORS NOT ALLOWED IN THIS ORIGIN'), false)
-  }
-}))
+app.use(corsMiddleware())
 app.use(express.json())
-app.use((req, res, next) => {
-  res.locals.test = 'TEST OK'
-  next()
-})
+app.use(testMiddleware())
 
 app.use('/', routes)
 

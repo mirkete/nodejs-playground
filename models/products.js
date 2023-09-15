@@ -7,23 +7,22 @@ const products = readJson('./products')
 class ResultObject {
   constructor (success, errorMessage, data) {
     this.success = success
-    if (errorMessage) this.error = { error: errorMessage }
-    if (data) this.data = data
+    this.error = errorMessage || false
+    this.data = data || null
   }
 }
-// faltaria implementarlo aca y en el controller
 
 class Product {
   static getAll () {
-    return products
+    return new ResultObject(true, null, products)
   }
 
   static getOne ({ id }) {
     const producto = products.find((prod) => prod._id === id)
     if (!producto) {
-      return false
+      return new ResultObject(false, 'No se ha encontrado el producto', null)
     }
-    return producto
+    return new ResultObject(true, null, producto)
   }
 
   static createProduct (product) {
@@ -32,42 +31,43 @@ class Product {
       ...product
     })
     if (!validation.success) {
-      return false
+      return new ResultObject(false, 'La validacion ha fallado. Verifica el producto ingresado.', null)
     }
     const newProduct = validation.data
     products.push(newProduct)
-    return true
+    return new ResultObject(true, false, newProduct)
   }
 
   static deleteOne (idObj) {
     const validation = validateProductUUID(idObj)
     if (!validation.success) {
-      return false
+      return new ResultObject(false, 'La validacion ha fallado. Verifica el producto ingresado.', null)
     }
 
     const index = products.findIndex((prod) => prod._id === validation.data._id)
     if (index === -1) {
-      return false
+      return new ResultObject(false, 'No se ha encontrado el producto.', null)
     }
+    const productoToRemove = products[index]
     products.splice(index, 1)
 
-    return true
+    return new ResultObject(true, false, productoToRemove)
   }
 
   static modifyOne (productFields) {
     const { error, data } = validateProductModify(productFields)
     if (error) {
-      return false
+      return new ResultObject(false, 'La validacion ha fallado. Verifica los campos.', null)
     }
     const index = products.findIndex((prod) => prod._id === data._id)
     if (index === -1) {
-      return false
+      return new ResultObject(false, 'No se ha encontrado el producto', null)
     }
     products[index] = {
       ...products[index],
       ...data
     }
-    return true
+    return new ResultObject(true, false, products[index])
   }
 }
 
