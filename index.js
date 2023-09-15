@@ -1,43 +1,24 @@
-const express = require('express')
-const { obtenerPuerto } = require('./services')
-const routes = require('./routes')
+// const express = require('express')
+// const { obtenerPuerto } = require('./services')
+// const routes = require('./routes')
+// const app = express()
+// const cors = require('cors')
+
+import express from 'express'
+import { obtenerPuerto } from './utils.js'
+import routes from './routes.js'
+import corsMiddleware from './middlewares/cors.js'
+import testMiddleware from './middlewares/test.js'
+
 const app = express()
 
-const ALLOWED_ORIGINS = [
-  'http://localhost:1234',
-  'https://expressjs.com'
-]
 const PORT = process.env.PORT || 3000
-
-app.use((req, res, next) => {
-  const origin = req.header('origin')
-  if (ALLOWED_ORIGINS.includes(origin)) {
-    res.writeHead(200, {
-      'Access-Control-Allow-Origin': origin
-    })
-  }
-  next()
-})
-
-app.options('/products/:id', (req, res) => {
-  const origin = req.header('origin')
-  if (ALLOWED_ORIGINS.includes(origin)) {
-    res.writeHead(200, {
-      'Access-Control-Allow-Origin': origin,
-      'Access-Control-Allowed-Methods': 'POST, PATCH, DELETE'
-    })
-  }
-  res.send()
-})
 
 app.disable('x-powered-by')
 
+app.use(corsMiddleware())
 app.use(express.json())
-
-app.use((req, res, next) => {
-  res.locals.test = 'TEST OK'
-  next()
-})
+app.use(testMiddleware())
 
 app.use('/', routes)
 

@@ -15,7 +15,7 @@ DELETE http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "6bdcf930-10e6-4816-ae25-db1e6247d231"
+    "_id": "47db6d50-60de-4033-a931-e0353d08f56b"
 }
 
 ###
@@ -24,8 +24,8 @@ PATCH http://localhost:3000/products
 content-type: application/json
 
 {
-    "nombre": "Remera Nike Ultra-Wide Fit",
-    "precio": 1200
+    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
+    "nombre": "Remeruki"
 }
 
 # fetch("http://localhost:3000/products", {
