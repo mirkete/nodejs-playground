@@ -1,4 +1,4 @@
-POST http://localhost:3000/products
+POST https://nodejs-playground-59f9-dev.fl0.io/products
 content-type: application/json
 
 {
@@ -11,11 +11,11 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:3000/products
+DELETE https://nodejs-playground-59f9-dev.fl0.io/products
 content-type: application/json
 
 {
-    "_id": "47db6d50-60de-4033-a931-e0353d08f56b"
+    "_id": "30835af8-288d-4017-9e9d-9ebf61c7ab97"
 }
 
 ###

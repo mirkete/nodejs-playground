@@ -1,9 +1,3 @@
-// const express = require('express')
-// const { obtenerPuerto } = require('./services')
-// const routes = require('./routes')
-// const app = express()
-// const cors = require('cors')
-
 import express from 'express'
 import { obtenerPuerto } from './utils.js'
 import routes from './routes.js'
