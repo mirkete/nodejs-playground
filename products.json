@@ -1,57 +1,9 @@
 [{
     "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
-},
-{
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
-},
-{
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
-},
-{
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
-},
-{
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
-},
-{
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
-},
-{
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
+    "name": "Remera Nik Ultra-Fit Wide",
+    "categories": ["ropa", "remeras", "deportes", "fitness"],
+    "brand": "Nike",
+    "price": 7850,
+    "type": "remera"
 }
 ]
