@@ -12,7 +12,7 @@ class ResultObject {
   }
 }
 
-class Product {
+class ProductsModel {
   static getAll () {
     return new ResultObject(true, null, products)
   }
@@ -71,4 +71,4 @@ class Product {
   }
 }
 
-export default Product
+export default ProductsModel

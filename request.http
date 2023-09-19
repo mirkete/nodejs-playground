@@ -15,7 +15,7 @@ DELETE http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "ef488558-b143-4c22-8cfc-eb97eadef56c"
+    "_id": "4f9ebb4a-e636-4b4c-a46e-ddb3b8c5b30b"
 }
 
 ###
@@ -24,7 +24,7 @@ PATCH http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "ec668bf1-b390-4eae-a6bd-9db64613a04e",
+    "_id": "4f9ebb4a-e636-4b4c-a46e-ddb3b8c5b30b",
     "type": "Zapatillas"
 }
 
