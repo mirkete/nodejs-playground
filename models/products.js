@@ -31,7 +31,7 @@ class Product {
       ...product
     })
     if (!validation.success) {
-      return new ResultObject(false, 'La validacion ha fallado. Verifica el producto ingresado.', null)
+      return new ResultObject(false, validation.error.message, null)
     }
     const newProduct = validation.data
     products.push(newProduct)
@@ -41,7 +41,7 @@ class Product {
   static deleteOne (idObj) {
     const validation = validateProductUUID(idObj)
     if (!validation.success) {
-      return new ResultObject(false, 'La validacion ha fallado. Verifica el producto ingresado.', null)
+      return new ResultObject(false, 'La validacion ha fallado. Verifica ssel producto ingresado.', null)
     }
 
     const index = products.findIndex((prod) => prod._id === validation.data._id)

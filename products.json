@@ -1,8 +1,82 @@
-[{
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remera Nik Ultra-Fit Wide",
-    "categorias": ["ropa", "remeras", "deportes", "fitness"],
-    "marca": "Nike",
-    "precio": 7850,
-    "tipo": "remera"
-}]
+[
+    {
+        "_id": "fcec3f3e-9648-4128-936a-12c67185ba15",
+        "name": "Nike Air Max",
+        "categories": "Sneakers",
+        "brand": "Nike",
+        "price": "130.00",
+        "type": "Shoes"
+    },
+    {
+        "_id": "df3f8221-1fcc-42a6-bffe-830db5dd1e09",
+        "name": "Nike Pitch Training Football",
+        "categories": "Sports Equipment",
+        "brand": "Nike",
+        "price": "15.00",
+        "type": "Accessories"
+    },
+    {
+        "_id": "e60eefff-f9cf-48a9-80b4-b4462d212065",
+        "name": "Nike Pro Men's Tights",
+        "categories": "Sportswear",
+        "brand": "Nike",
+        "price": "35.00",
+        "type": "Bottoms"
+    },
+    {
+        "_id": "53ce45f1-a396-4367-8d6a-9da37dc50a13",
+        "name": "Nike Dri-FIT Miler Run",
+        "categories": "T-shirt",
+        "brand": "Nike",
+        "price": "45.00",
+        "type": "Tops"
+    },
+    {
+        "_id": "f9ea6559-efd6-4024-acdd-753a7710e49d",
+        "name": "Nike Men's Hoodie",
+        "categories": "Hoodie",
+        "brand": "Nike",
+        "price": "60.00",
+        "type": "Tops"
+    },
+    {
+        "_id": "ef008a2a-8bef-429c-abd9-30a4fc43a1d6",
+        "name": "Nike Air Force 1 '07",
+        "categories": "Sportswear",
+        "brand": "Nike",
+        "price": "90.00",
+        "type": "Shoes"
+    },
+    {
+        "_id": "cf5947d6-8abf-469d-92dc-29d0e82761b8",
+        "name": "Nike Sportswear Club Fleece",
+        "categories": "Pants",
+        "brand": "Nike",
+        "price": "55.00",
+        "type": "Bottoms"
+    },
+    {
+        "_id": "af630b3f-d7c3-400a-853d-15f8724a295b",
+        "name": "Nike Women's Running Shorts",
+        "categories": "Shorts",
+        "brand": "Nike",
+        "price": "35.00",
+        "type": "Bottoms"
+    },
+    {
+        "_id": "feec02e6-f6cf-4b0a-bef3-f99c729aac5e",
+        "name": "Nike Every Essential Crew Socks",
+        "categories": "Socks",
+        "brand": "Nike",
+        "price": "16.00",
+        "type": "Accessories"
+    },
+    {
+        "_id": "eeb7dbee-60da-43d7-8059-351d1d81ef50",
+        "name": "Nike Elite Basketball Crew Socks",
+        "categories": "Socks",
+        "brand": "Nike",
+        "price": "14.00",
+        "type": "Accessories"
+    }
+]
