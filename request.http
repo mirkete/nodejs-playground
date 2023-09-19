@@ -2,20 +2,20 @@ POST http://localhost:3000/products
 content-type: application/json
 
 {
-    "name": "Remera Nik Ultra-Fit Wide",
-    "categories": ["ropa", "remeras", "deportes", "fitness"],
+    "name": "Buzo King Of The Kongo",
+    "categories": ["t-shirtss", "sports"],
     "brand": "Nike",
     "price": 7850,
-    "type": "remera"
+    "type": "remera"    
 }
 
 ###
 
-DELETE https://nodejs-playground-59f9-dev.fl0.io/products
+DELETE http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "30835af8-288d-4017-9e9d-9ebf61c7ab97"
+    "_id": "ef488558-b143-4c22-8cfc-eb97eadef56c"
 }
 
 ###
@@ -24,8 +24,8 @@ PATCH http://localhost:3000/products
 content-type: application/json
 
 {
-    "_id": "8b74b33f-6cb3-4298-b9e5-e62e2a03639e",
-    "nombre": "Remeruki"
+    "_id": "ec668bf1-b390-4eae-a6bd-9db64613a04e",
+    "type": "Zapatillas"
 }
 
 # fetch("http://localhost:3000/products", {

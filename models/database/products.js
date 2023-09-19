@@ -1,5 +1,5 @@
 import mysql from 'mysql2/promise'
-import { validateProduct } from '../../schemas/Product.js'
+import { validateProduct, validateProductUUID, validateProductModify } from '../../schemas/Product.js'
 import crypto from 'node:crypto'
 
 const config = {
@@ -10,6 +10,7 @@ const config = {
 }
 
 const connection = await mysql.createConnection(config)
+connection.config.namedPlaceholders = true
 
 class ResultObject {
   constructor (success, errorMessage, data) {
@@ -32,7 +33,7 @@ class Product {
   static async getOne ({ id }) {
     try {
       const result = await connection.query(
-        'SELECT * FROM products ' +
+        'SELECT * FROM `products` ' +
       'WHERE _id = ?', [id])
       return new ResultObject(true, null, result[0])
     } catch (e) {
@@ -46,26 +47,87 @@ class Product {
       ...product
     })
     if (!validation.success) {
-      return new ResultObject(false, validation.error.message, null)
+      return new ResultObject(false, 'VALIDATION FAILED. CHECK PRODUCT FIELDS', null)
     }
-    const { _id, name, brand, price, type } = validation.data
+    const { _id, name, brand, price, type, categories } = validation.data
     try {
       await connection.query(
         'INSERT INTO products(_id, name, brand, price, type) ' +
-        'VALUES (?, ?, ?, ?, ?)',
-        [_id, name, brand, price, type]
+        'VALUES (?, ?, ?, ?, ?); '
+        , [_id, name, brand, price, type].concat(categories)
       )
-      // Deberia agregar las categorias en la relacional tambien
-      return new ResultObject(true, null, validation.data)
+      const categoriesFields = Array(categories.length).fill('?').join(',')
+      const categoriesResult = await connection.query(
+        'SELECT category_id from categories ' +
+        'WHERE LOWER(category_name) IN ( ' + categoriesFields + ')'
+        , categories
+      )
+
+      if (categoriesResult[0].length > 0) {
+        const categoriesRelations = categoriesResult[0].map((category) => {
+          return `(${category.category_id}, "${_id}")`
+        }).join(',')
+
+        const categoriesAsSQL = { toSqlString: function () { return categoriesRelations } }
+
+        await connection.query(
+          'INSERT INTO product_categories (category_id, product_id) ' +
+          'VALUES ?', [categoriesAsSQL]
+        )
+        return new ResultObject(true, null, 'PRODUCT CREATED SUCCESSFULLY')
+      }
+
+      return new ResultObject(true, null, 'PRODUCT CREATED BUT CATEGORIES NOT FOUND')
     } catch (e) {
-      return new ResultObject(false, 'No se ha podido crear el producto', null)
+      return new ResultObject(false, 'PRODUCT CREATION FAILED', null)
     }
   }
 
-  static deleteOne (idObj) {
+  static async deleteOne ({ _id }) {
+    const validation = validateProductUUID({ _id })
+    if (!validation.success) {
+      return new ResultObject(false, 'INVALID ID', null)
+    }
+
+    try {
+      await connection.query(
+        'DELETE FROM product_categories ' +
+        'WHERE product_id = ?; '
+        , [_id]
+      )
+
+      await connection.query(
+        'DELETE FROM products ' +
+        'WHERE _id = ?'
+        , [_id]
+      )
+      return new ResultObject(true, false, 'PRODUCT REMOVED SUCCESSFULLY')
+    } catch (e) {
+      return new ResultObject(false, 'PRODUCT REMOVE FAILED', null)
+    }
   }
 
-  static modifyOne (productFields) {
+  static async modifyOne (productFields) {
+    const validation = validateProductModify(productFields)
+    const finalProduct = validation.data
+    if (!validation.success || finalProduct.length < 2) {
+      return new ResultObject(false, 'THE PRODUCT ID OR ANY OTHER FIELD IS INVALID')
+    }
+
+    const { _id } = finalProduct
+    delete finalProduct._id
+
+    try {
+      await connection.query(
+        'UPDATE products ' +
+        'SET ? ' +
+        'WHERE _id = ?'
+        , [finalProduct, _id]
+      )
+      return new ResultObject(true, false, validation.data)
+    } catch (e) {
+      return new ResultObject(false, 'PRODUCT MODIFY FAILED', null)
+    }
   }
 }
 
