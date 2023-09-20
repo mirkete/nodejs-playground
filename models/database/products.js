@@ -20,7 +20,7 @@ class ResultObject {
   }
 }
 
-class Product {
+class ProductsModel {
   static async getAll () {
     try {
       const result = await connection.query('SELECT _id, name,brand,price,type FROM products')
@@ -74,10 +74,10 @@ class Product {
           'INSERT INTO product_categories (category_id, product_id) ' +
           'VALUES ?', [categoriesAsSQL]
         )
-        return new ResultObject(true, null, 'PRODUCT CREATED SUCCESSFULLY')
+        return new ResultObject(true, null, { name, brand, price, type, categories })
       }
 
-      return new ResultObject(true, null, 'PRODUCT CREATED BUT CATEGORIES NOT FOUND')
+      return new ResultObject(true, null, { name, brand, price, type, categories })
     } catch (e) {
       return new ResultObject(false, 'PRODUCT CREATION FAILED', null)
     }
@@ -101,7 +101,7 @@ class Product {
         'WHERE _id = ?'
         , [_id]
       )
-      return new ResultObject(true, false, 'PRODUCT REMOVED SUCCESSFULLY')
+      return new ResultObject(true, false, validation.data)
     } catch (e) {
       return new ResultObject(false, 'PRODUCT REMOVE FAILED', null)
     }
@@ -131,4 +131,4 @@ class Product {
   }
 }
 
-export default Product
+export default ProductsModel
