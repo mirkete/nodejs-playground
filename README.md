@@ -1,7 +1,8 @@
 # Sobre el respositorio
 En este proyecto, construí una **APLICACION DE CONTROL DE CATALOGOS**. Mi unico objetivo detras de este proyecto es aprender. Por ello, en el combino diferentes arquitecturas y patrones de diseño. Entre estos:
-* [Arquitectura M.V.C](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (Model View Controller)
-* [Inyeccion de dependencias](https://en.wikipedia.org/wiki/Dependency_injection)
+* REST
+* Arquitectura M.V.C
+* Inyeccion de dependencias
 
 ## Tecnologias usadas en el proyecto
 La aplicacion esta construida con Node.js y Javascrist. Ademas, implementa algunas otras tecnologias.
@@ -12,13 +13,13 @@ La aplicacion esta construida con Node.js y Javascrist. Ademas, implementa algun
 ## Inicializar el proyecto
 Para inicializar el proyecto en modo desarrollador, ejecutar lo siguiente:
 
-'''
+```
 npm run start-server *db_name*
-'''
+```
 > Allowed *db_name*'s: local, sql
 <br/>
 Luego, para desplegar el proyecto en modo produccion, ejecutar lo siguiente:
 
-'''
+```
 npm run start
-'''
+```
